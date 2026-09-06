@@ -200,7 +200,7 @@ app.post('/newOrder', async(req,res)=>{
   });
   newOrder.save();
   
-  res.send("Order saved successfully").redirect("/allOrders");
+  res.send("Order saved successfully")
   console.log("New order saved:");
 });
 
