@@ -81,10 +81,6 @@ Below are screenshots of the main application screens.
 
 ![Landing Page](./screenshots/landing-page.png)
 
-### Login
-
-![Login](./screenshots/login.png)
-
 ### Dashboard
 
 ![Dashboard](./screenshots/dashboard.png)
