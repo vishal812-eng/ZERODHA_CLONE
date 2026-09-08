@@ -3,14 +3,14 @@ const jwt = require("jsonwebtoken")
 const verifyToken = (req, res, next) => {
   const token = req.cookies.token
   if(!token) {
-    return res.json({ success: false })
+    return res.status(401).json({ success: false, message: "Access Denied" })
   }
   try {
     const verified = jwt.verify(token, process.env.TOKEN_KEY)
     req.user = verified
     next()
   } catch(err) {
-    return res.json({ success: false })
+    return res.status(401).json({ success: false, message: "Invalid token" })
   }
 }
 

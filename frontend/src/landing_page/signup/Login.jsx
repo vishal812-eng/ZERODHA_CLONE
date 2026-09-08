@@ -9,18 +9,27 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    console.log("button clicked")
     try {
-      const response = await axios.post(
-        "http://localhost:3002/login",
-        { email, password },
-        { withCredentials: true }
-      )
-      if(response.data.success) {
-        window.location.href = "http://localhost:3000"
-      }
-    } catch(err) {
-      setError("Invalid email or password!")
-    }
+  const response = await axios.post(
+    "http://localhost:3002/login",
+    { email, password },
+    { withCredentials: true }
+  );
+
+  console.log("LOGIN DATA:", response.data);
+
+  if (response.data.success) {
+    window.location.href = "http://localhost:3000";
+  } else {
+    setError(response.data.message);
+    alert(response.data.message);
+  }
+
+} catch (err) {
+  console.log("Login Error:", err);
+  setError("Something went wrong");
+}
   }
 
   return (
@@ -30,7 +39,7 @@ const Login = () => {
       alignItems: "center",
       height: "100vh"
     }}>
-      <div style={{ width: "400px" }}>
+      <div style={{ width: "400px" }}>  
 
         <h3 className="mb-1">Login</h3>
         <p className="text-muted mb-4" style={{ fontSize: "14px" }}>

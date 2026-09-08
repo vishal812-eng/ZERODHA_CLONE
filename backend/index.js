@@ -42,19 +42,22 @@ app.get('/allPositions',verifyToken, async(req,res)=>{
 
 app.post('/newOrder',verifyToken, async(req,res)=>{
   let newOrder = new OrdersModel({
+    user: req.user.id,
     name: req.body.name,
     qty: req.body.qty,
     price: req.body.price,
     mode: req.body.mode,
   });
-  newOrder.save();
+  await newOrder.save();
   
   res.send("Order saved successfully")
   console.log("New order saved:");
 });
 
 app.get('/allOrders',verifyToken, async(req, res) => {
-  let allOrders = await OrdersModel.find({})
+  let allOrders = await OrdersModel.find({
+    user: req.user.id
+  })
   res.json(allOrders)
 })
 

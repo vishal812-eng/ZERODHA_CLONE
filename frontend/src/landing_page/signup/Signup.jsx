@@ -9,18 +9,31 @@ const Signup = () => {
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    console.log("button clicked")
-    console.log({ username, email, password })
+  e.preventDefault();
+
+  console.log("button clicked");
+  console.log({ username, email, password });
+
+  try {
     const response = await axios.post(
       "http://localhost:3002/signup",
       { username, email, password },
       { withCredentials: true }
-    )
-    if(response.data.success) {
-      window.location.href = "http://localhost:3000"
+    );
+
+    if (response.data.success) {
+      window.location.href = "http://localhost:3000";
     }
+
+  } catch (error) {
+    console.log("Signup Error:", error);
+    console.log("Backend Response:", error.response?.data);
+
+    alert(
+      error.response?.data?.message || "Something went wrong"
+    );
   }
+};
 
   return (
     <div style={{ 
