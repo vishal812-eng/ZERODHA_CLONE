@@ -7,7 +7,10 @@ const Orders = () => {
 
   useEffect(() => {
     axios.get("http://localhost:3002/allOrders")
-      .then(res => setOrders(res.data))
+      .then(res => {
+        console.log(res.data);
+        setOrders(res.data);
+      })  
   }, [])
 
   return (

@@ -1,24 +1,25 @@
 import { useState } from "react"
 import axios from "axios"
-import { useNavigate, Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 
-const Signup = () => {
-  const [username, setUsername] = useState("")
+const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const navigate = useNavigate()
+  const [error, setError] = useState("")
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log("button clicked")
-    console.log({ username, email, password })
-    const response = await axios.post(
-      "http://localhost:3002/signup",
-      { username, email, password },
-      { withCredentials: true }
-    )
-    if(response.data.success) {
-      window.location.href = "http://localhost:3000"
+    try {
+      const response = await axios.post(
+        "http://localhost:3002/login",
+        { email, password },
+        { withCredentials: true }
+      )
+      if(response.data.success) {
+        window.location.href = "http://localhost:3000"
+      }
+    } catch(err) {
+      setError("Invalid email or password!")
     }
   }
 
@@ -30,22 +31,18 @@ const Signup = () => {
       height: "100vh"
     }}>
       <div style={{ width: "400px" }}>
-        
-        <h3 className="mb-1">Signup now</h3>
+
+        <h3 className="mb-1">Login</h3>
         <p className="text-muted mb-4" style={{ fontSize: "14px" }}>
-          Or track your existing application
+          Welcome back!
         </p>
 
-        {/* Username */}
-        <div className="mb-3">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Username"
-            onChange={(e) => setUsername(e.target.value)}
-            value={username}
-          />
-        </div>  
+        {/* Error Message */}
+        {error && (
+          <div className="alert alert-danger" style={{ fontSize: "14px" }}>
+            {error}
+          </div>
+        )}
 
         {/* Email */}
         <div className="mb-3">
@@ -75,20 +72,13 @@ const Signup = () => {
           style={{ backgroundColor: "#387ED1", padding: "12px" }}
           onClick={handleSubmit}
         >
-          Signup
+          Login
         </button>
 
-        {/* Login Link */}
+        {/* Signup Link */}
         <p className="text-center" style={{ fontSize: "14px" }}>
-          Already have an account?{" "}
-          <Link to="/login" style={{ color: "#387ED1" }}>Login</Link>
-        </p>
-
-        {/* Terms */}
-        <p className="text-muted text-center" style={{ fontSize: "12px" }}>
-          By proceeding, you agree to the{" "}
-          <a href="#" style={{ color: "#387ED1" }}>terms</a> &{" "}
-          <a href="#" style={{ color: "#387ED1" }}>privacy policy</a>
+          Don't have an account?{" "}
+          <Link to="/signup" style={{ color: "#387ED1" }}>Signup</Link>
         </p>
 
       </div>
@@ -96,4 +86,4 @@ const Signup = () => {
   )
 }
 
-export default Signup
+export default Login
