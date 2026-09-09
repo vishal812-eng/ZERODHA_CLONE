@@ -15,10 +15,10 @@ const Menu = () => {
   };
 
   const handleLogout = async () => {
-    await axios.get("http://localhost:3002/logout", {
+    await axios.get("https://zerodha-clone-4hp1.onrender.com/logout", {
       withCredentials: true
     })
-    window.location.href = "http://localhost:5173/login"
+    window.location.href = "https://zerodha-clone-frontend-dsp7.onrender.com/login"
   }
 
   const menuClass = "menu";

@@ -18,7 +18,7 @@ const uri = process.env.MONGO_URL;
 const app = express();
 
 app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:3000"],
+  origin: ["https://zerodha-clone-1-ylax.onrender.com", "https://zerodha-clone-frontend-dsp7.onrender.com"],
   credentials: true                
 }));
 app.use(bodyParser.json());

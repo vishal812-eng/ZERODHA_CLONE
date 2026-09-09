@@ -5,7 +5,7 @@ const PrivateRoute = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(null)
 
   useEffect(() => {
-    axios.get("http://localhost:3002/verify", {
+    axios.get("https://zerodha-clone-4hp1.onrender.com/verify", {
       withCredentials: true
     })
     .then(res => {
@@ -24,7 +24,7 @@ const PrivateRoute = ({ children }) => {
   }
 
     if(!isAuthenticated) {
-        window.location.href = "http://localhost:5173/login"
+        window.location.href = "https://zerodha-clone-frontend-dsp7.onrender.com/login"
         return null
     }
 

@@ -16,13 +16,13 @@ const Signup = () => {
 
   try {
     const response = await axios.post(
-      "http://localhost:3002/signup",
+      "https://zerodha-clone-4hp1.onrender.com/signup",
       { username, email, password },
       { withCredentials: true }
     );
 
     if (response.data.success) {
-      window.location.href = "http://localhost:3000";
+      window.location.href = "https://zerodha-clone-1-ylax.onrender.com";
     }
 
   } catch (error) {

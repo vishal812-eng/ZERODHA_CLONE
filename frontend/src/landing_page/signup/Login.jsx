@@ -12,7 +12,7 @@ const Login = () => {
     console.log("button clicked")
     try {
   const response = await axios.post(
-    "http://localhost:3002/login",
+    "https://zerodha-clone-4hp1.onrender.com/login",
     { email, password },
     { withCredentials: true }
   );
@@ -20,7 +20,7 @@ const Login = () => {
   console.log("LOGIN DATA:", response.data);
 
   if (response.data.success) {
-    window.location.href = "http://localhost:3000";
+    window.location.href = "https://zerodha-clone-1-ylax.onrender.com";
   } else {
     setError(response.data.message);
     alert(response.data.message);
